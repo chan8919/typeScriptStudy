@@ -23,6 +23,10 @@ let cards2: number[] = [13,7,2,4];
 // 튜플 타입은 형태가 정해진 배열이다. 구조체랑 비슷할지도?
 let items: [string, number] = ['hi',11];
 
+let demoItem:{id:number,title:string} [] =[];
+demoItem.push({id:1,title:"ss"});
+
+
 
 // any 모든 타입. 조커카드.
 let data:any = 1;
