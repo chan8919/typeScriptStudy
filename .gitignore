@@ -1,5 +1,11 @@
+# 모든 폴더 무시
+/*/
+
+# 예외: 본인 폴더만 커밋
+!sunfivemin/
+
+# 그 외 무시할 항목
 node_modules/
-learn-typescript/
 dist/
 .env
-.DS_Storelearn-typescript/
+.DS_Store
