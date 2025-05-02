@@ -6,7 +6,10 @@
 **/.eslintrc.js
 **/.eslintignore
 **/package-lock.json
+**/package.json
+**/tsconfig.json
 **/.prettierrc
+
 
 # 프로젝트 폴더
 080316/example/
