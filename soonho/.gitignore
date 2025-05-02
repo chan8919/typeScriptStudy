@@ -1,0 +1,19 @@
+
+# 모든 하위 폴더에 있는 node_modules 폴더 무시 
+**/node_modules/
+
+# 모든 하위 폴더에 있는 파일들 무시
+**/.eslintrc.js
+**/.eslintignore
+**/package-lock.json
+**/.prettierrc
+
+# 프로젝트 폴더
+080316/example/
+080316/project/
+080316/quiz/2_address-book/
+080316/setup/
+080316/why-ts/
+fundamental/
+
+
