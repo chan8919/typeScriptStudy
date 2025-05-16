@@ -1,0 +1,25 @@
+{
+  "name": "tinytype-rpg",
+  "version": "1.0.0",
+  "description": "> 타입스크립트 OOP 실습 프로젝트 > 버튼을 누르면 누군가 맞습니다.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunfivemin/tinytype-rpg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sunfivemin/tinytype-rpg/issues"
+  },
+  "homepage": "https://github.com/sunfivemin/tinytype-rpg#readme",
+  "devDependencies": {
+    "parcel": "^2.15.0",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  }
+}
