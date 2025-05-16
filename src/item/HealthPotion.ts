@@ -1,10 +1,10 @@
 // 아이템 시스템
 
-import { Item } from './Item';
-import { Character } from '../character/Character';
+import { Item } from "./Item";
+import { Character } from "../character/Character";
 
 export class HealthPotion implements Item {
-  name = 'Health Potion';
+  name = "Health Potion";
 
   use(user: Character): string {
     const healed = Math.min(user.maxHp - user.hp, 50);

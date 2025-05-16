@@ -7,16 +7,16 @@ export class UIManager {
   private buttons: HTMLButtonElement[];
 
   constructor() {
-    this.playerStats = document.getElementById('player-stats')!;
-    this.enemyStats = document.getElementById('enemy-stats')!;
-    this.playerBar = document.getElementById('player-bar') as HTMLDivElement;
-    this.enemyBar = document.getElementById('enemy-bar') as HTMLDivElement;
-    this.logBox = document.getElementById('log')!;
+    this.playerStats = document.getElementById("player-stats")!;
+    this.enemyStats = document.getElementById("enemy-stats")!;
+    this.playerBar = document.getElementById("player-bar") as HTMLDivElement;
+    this.enemyBar = document.getElementById("enemy-bar") as HTMLDivElement;
+    this.logBox = document.getElementById("log")!;
     this.buttons = [
-      document.getElementById('attack-btn') as HTMLButtonElement,
-      document.getElementById('heal-btn') as HTMLButtonElement,
-      document.getElementById('skill-btn') as HTMLButtonElement,
-      document.getElementById('item-btn') as HTMLButtonElement,
+      document.getElementById("attack-btn") as HTMLButtonElement,
+      document.getElementById("heal-btn") as HTMLButtonElement,
+      document.getElementById("skill-btn") as HTMLButtonElement,
+      document.getElementById("item-btn") as HTMLButtonElement,
     ];
   }
 
@@ -28,7 +28,7 @@ export class UIManager {
   }
 
   log(message: string) {
-    this.logBox.innerHTML += `<div>${message.replace(/\n/g, '<br>')}</div>`;
+    this.logBox.innerHTML += `<div>${message.replace(/\n/g, "<br>")}</div>`;
     this.logBox.scrollTop = this.logBox.scrollHeight;
   }
 
