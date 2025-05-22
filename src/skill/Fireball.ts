@@ -8,8 +8,8 @@ export class Fireball implements Skill {
 
   private getRandomDamage(): number {
     const rand = Math.random();
-    if (rand < 0.7) return 20; // 70%
-    else if (rand < 0.9) return 25; // 20%
+    if (rand < 0.6) return 20; // 60%
+    else if (rand < 0.9) return 25; // 30%
     else return 40; // 10%
   }
 
