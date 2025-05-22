@@ -38,6 +38,7 @@ function playerTurn(
 
   setTimeout(() => {
     fireball.advanceTurn(); // 쿨다운 감소
+    healthPotion.advanceTurn();
 
     const enemyMsg = battle.enemyAction();
     ui.log(enemyMsg);
