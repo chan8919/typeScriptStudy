@@ -13,6 +13,7 @@ export class BattleManager {
   private ai: EnemyAI;
   private turnIntervalId: number | null = null;
   private onTurnChanged?: ((turn:turnners) => void) | null = null ;
+  private onCooldownChanged?: ((skiilsCooldown:any[]) => void) | null = null ;
 
   // BattleManager 생성 시 EnemyAI 생성 후 ai 에 연결
   constructor(private player: Player, private enemy: Enemy) {
@@ -50,6 +51,7 @@ export class BattleManager {
     this.currentTurn = 'nobody';
     this.player.initTurn();
     // this.setCurrentTurn();
+    //사용한 스킬 쿨다운 카운트 감소 적용
     return msg ;
   }
 
@@ -135,6 +137,10 @@ export class BattleManager {
   // 콜백 함수 생성
   setTurnChangedCallback(callback:(turn:turnners)=>void){
     this.onTurnChanged = callback;
+  }
+
+  setSkillCooldownCallback(callback:(skiilsCooldown:any[])=>void){
+    this.onCooldownChanged = callback;
   }
 
 
