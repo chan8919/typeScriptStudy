@@ -12,39 +12,37 @@ export class EnemyAI {
     let rand = Math.random();
     console.log(`확률:${rand * 100}, HP: ${this.enemy.hp}`);
 
-    let finallySkill: boolean = false;
-
-    if (this.enemy.hp < 10) {
-      // 딸피 패시브 (각 스펙을 전부 2배로 향상)
+    if (this.enemy.hp < 10 && this.enemy.isFinalSkillUsed === true) {
+      // 딸피 스킬 (각 스펙을 전부 2배로 향상)
       msg += strugge(this.enemy, this.player);
-      finallySkill = true;
+      this.enemy.isFinalSkillUsed = false;
+
+      return msg;
     }
 
-    if (!finallySkill) {
-      // 패시브
-      if (rand < 0.3) {
-        // 독침 공격
-        msg += poisonActtack(this.enemy, this.player);
-      } else if (rand < 0.4 && this.enemy.hp <= 40) {
-        //HP 힐
-        msg += hillHP(this.enemy, this.player);
-      } else {
-        // 기본 공격
-        msg += autoAttack(this.enemy, this.player);
-      }
+    // 패시브
+    if (rand < 0.3) {
+      // 독침 공격
+      msg += poisonActtack(this.enemy, this.player);
+    } else if (rand < 0.4 && this.enemy.hp <= 40) {
+      //HP 힐
+      msg += hillHP(this.enemy, this.player);
+    } else {
+      // 기본 공격
+      msg += autoAttack(this.enemy, this.player);
+    }
 
-      // 메인 스킬 확률
-      rand = Math.random();
+    // 메인 스킬 확률
+    rand = Math.random();
 
-      if (rand < 0.2) {
-        // 연속 두번 공격
-        msg += doubleAttack(this.enemy, this.player);
-      }
+    if (rand < 0.2) {
+      // 연속 두번 공격
+      msg += doubleAttack(this.enemy, this.player);
+    }
 
-      if (rand > 0.3 && rand < 0.5) {
-        // 방어력 상승
-        msg += enforceDefense(this.enemy, this.player);
-      }
+    if (rand > 0.3 && rand < 0.5) {
+      // 방어력 상승
+      msg += enforceDefense(this.enemy, this.player);
     }
 
     return msg;
