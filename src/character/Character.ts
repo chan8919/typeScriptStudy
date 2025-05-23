@@ -37,4 +37,8 @@ export class Character {
   return this.currentTurnPoint;
 }
 
+  usePassiveSkill(): string {
+    console.log(`[🌀 패시브] ${this.name}의 패시브 스킬 호출됨 (기본: 없음)`);
+    return '';
+  }
 }

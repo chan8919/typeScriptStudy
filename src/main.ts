@@ -9,6 +9,17 @@ const player = new Player('용사', 255, 15, 3);   // 용사를 200으로 해도
 const enemy = new Enemy('슬라임', 400, 10, 2, 15); // 슬라임을 400으로 바꾸고고
 const battle = new BattleManager(player, enemy);
 const ui = new UIManager();
+const fireball = new Fireball();
+const healthPotion = new HealthPotion();
+
+// 패시브 스킬 체크 함수
+function checkPassiveSkill() {
+  const msg = player.usePassiveSkill();
+  if (msg) {
+    ui.log(`[🌀 패시브] ${msg}`);
+    ui.renderStats(player, enemy);
+  }
+}
 
 function playerTurn(
   action: 'attack' | 'heal' | 'skill' | 'item',
@@ -27,6 +38,7 @@ function playerTurn(
 
   ui.log(msg);
   ui.renderStats(player, enemy);
+  checkPassiveSkill();
 
   if (battle.isBattleOver()) {
     ui.disableButtons(true);
@@ -36,6 +48,22 @@ function playerTurn(
   }
   battle.setCurrentTurn();
   setTimeout(() => {}, 1000);
+
+  setTimeout(() => {
+    fireball.advanceTurn(); // 쿨다운 감소
+    healthPotion.advanceTurn();
+
+    const enemyMsg = battle.enemyAction();
+    ui.log(enemyMsg);
+    ui.renderStats(player, enemy);
+
+    if (battle.isBattleOver()) {
+      ui.log('전투 종료');
+      ui.disableButtons(true);
+    } else {
+      ui.disableButtons(false);
+    }
+  }, 1000);
 }
 function gameLoop() {
   const turn = battle.getCurrentTurn();
@@ -78,10 +106,10 @@ document
   ?.addEventListener('click', () => playerTurn('heal'));
 document
   .getElementById('skill-btn')
-  ?.addEventListener('click', () => playerTurn('skill', new Fireball()));
+  ?.addEventListener('click', () => playerTurn('skill', fireball));
 document
   .getElementById('item-btn')
-  ?.addEventListener('click', () => playerTurn('item', new HealthPotion()));
+  ?.addEventListener('click', () => playerTurn('item', healthPotion));
 
 ui.renderStats(player, enemy);
 battle.setTurnChangedCallback((turn)=>{
