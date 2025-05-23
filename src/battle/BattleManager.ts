@@ -10,6 +10,7 @@ export class BattleManager {
   private currentTurn: 'player' | 'enemy' = 'player';
   private ai: EnemyAI;
 
+  // BattleManager 생성 시 EnemyAI 생성 후 ai 에 연결결
   constructor(private player: Player, private enemy: Enemy) {
     this.ai = new EnemyAI(enemy, player);
   }
@@ -40,7 +41,7 @@ export class BattleManager {
         if (item) msg = this.playerUseItem(item);
         break;
     }
-
+    //playerAction 후엔 턴을 enemy 턴으로 변경경
     this.currentTurn = 'enemy';
     return msg;
   }

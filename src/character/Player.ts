@@ -8,4 +8,13 @@ export class Player extends Character {
     this.hp += healed;
     return healed;
   }
+
+  // 체력 30% 이하일 때 자동 회복하는 패시브
+  usePassiveSkill(): string {
+    if (this.hp / this.maxHp < 0.3) {
+      const healed = this.heal(10);
+      return `${this.name}의 패시브 스킬 발동! HP ${healed} 회복`;
+    }
+    return '';
+  }
 }
