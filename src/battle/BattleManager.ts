@@ -12,7 +12,7 @@ export class BattleManager {
   private currentTurn: turnners = 'nobody';
   private ai: EnemyAI;
   private turnIntervalId: number | null = null;
-  private onTurnChanged?: ((turn:turnners) => void) | null = null ;
+  private onTurnChanged?: ((name:string) => void) | null = null ;
   private onCooldownChanged?: (() => void) | null = null ;
 
   // BattleManager 생성 시 EnemyAI 생성 후 ai 에 연결
@@ -62,7 +62,7 @@ export class BattleManager {
     //playerAction 후에 턴을 중립턴으로 변경 -> enemy의 턴 포인트를 초기화
     this.currentTurn = 'nobody';
     this.enemy.initTurn();
-    this.setCurrentTurn();
+    // this.setCurrentTurn();
     return msg;
   }
 
@@ -103,12 +103,12 @@ export class BattleManager {
 
     if (this.player.isTurn()) {
       this.currentTurn = 'player';
-      if (this.onTurnChanged) this.onTurnChanged(this.currentTurn); //callback이 있으면 실행
+      if (this.onTurnChanged) this.onTurnChanged(this.player.name); //callback이 있으면 실행
       return 'player님의 턴!';
     }
     if (this.enemy.isTurn()) {
       this.currentTurn = 'enemy';
-      if (this.onTurnChanged) this.onTurnChanged(this.currentTurn);
+      if (this.onTurnChanged) this.onTurnChanged(this.enemy.name);
       return 'enemy님의 턴!';
     }
     console.log(this.player.getTurnPoint() + " p : e " + this.enemy.getTurnPoint());
@@ -136,7 +136,7 @@ export class BattleManager {
   }
 
   // 콜백 함수 생성
-  setTurnChangedCallback(callback:(turn:turnners)=>void){
+  setTurnChangedCallback(callback:(name:string)=>void){
     this.onTurnChanged = callback;
   }
 

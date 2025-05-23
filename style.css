@@ -26,10 +26,23 @@ h1 {
   overflow: hidden;
   margin-bottom: 15px;
 }
+.speed-bar-container {
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  height: 18px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
 
 .hp-bar {
   height: 100%;
   background: linear-gradient(90deg, #79c779, #4caf50);
+  width: 100%;
+  transition: width 0.5s ease;
+}
+.speed-bar{
+  height: 100%;
+  background: linear-gradient(90deg, #c3ce5e, #bdce27);
   width: 100%;
   transition: width 0.5s ease;
 }

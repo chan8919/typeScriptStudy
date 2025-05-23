@@ -6,7 +6,7 @@ import { HealthPotion } from './item/HealthPotion';
 import { UIManager } from './ui/UIManager';
 
 const player = new Player('용사', 255, 15, 3);   // 용사를 200으로 해도 적용 안됨됨
-const enemy = new Enemy('슬라임', 400, 10, 2, 10); // 슬라임을 400으로 바꾸고고
+const enemy = new Enemy('슬라임', 400, 10, 2, 5); // 슬라임을 400으로 바꾸고고
 const battle = new BattleManager(player, enemy);
 const ui = new UIManager();
 const fireball = new Fireball();
@@ -21,8 +21,8 @@ function checkPassiveSkill() {
   }
 }
 
-function delay(ms:number):Promise<void>{
-  return new Promise(resolve=>setTimeout(resolve,ms));
+function delay(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function playerTurn(
@@ -51,8 +51,8 @@ async function playerTurn(
     return;
   }
   //battle.setCurrentTurn();
- setTimeout(() => {}, 1000);
-  
+  setTimeout(() => { }, 1000);
+
   // setTimeout(() => {
 
   //   const enemyMsg = battle.enemyAction();
@@ -69,7 +69,7 @@ async function playerTurn(
 }
 async function gameLoop() {
   const turn = battle.getCurrentTurn();
-
+  ui.renderStats(player, enemy);
   switch (turn) {
     case 'player':
       ui.disableButtons(false);
@@ -115,12 +115,12 @@ document
   ?.addEventListener('click', () => playerTurn('item', healthPotion));
 
 ui.renderStats(player, enemy);
-battle.setSkillCooldownCallback(()=>{
-    fireball.advanceTurn(); // 쿨다운 감소
-    healthPotion.advanceTurn();
-  })
-battle.setTurnChangedCallback((turn)=>{
-  ui.log('현재'+turn+'님의 턴');
+battle.setSkillCooldownCallback(() => {
+  fireball.advanceTurn(); // 쿨다운 감소
+  healthPotion.advanceTurn();
+})
+battle.setTurnChangedCallback((name) => {
+  ui.log('🚀SYSTEM : 현재 [ ' + name + ' ] 님의 턴-------');
 });
 battle.startTurnLoop();
 requestAnimationFrame(gameLoop);
