@@ -6,7 +6,7 @@ import { HealthPotion } from './item/HealthPotion';
 import { UIManager } from './ui/UIManager';
 
 const player = new Player('용사', 255, 15, 3);   // 용사를 200으로 해도 적용 안됨됨
-const enemy = new Enemy('슬라임', 400, 10, 2, 3); // 슬라임을 400으로 바꾸고고
+const enemy = new Enemy('슬라임', 400, 10, 2, 10); // 슬라임을 400으로 바꾸고고
 const battle = new BattleManager(player, enemy);
 const ui = new UIManager();
 const fireball = new Fireball();
@@ -48,10 +48,7 @@ function playerTurn(
   }
   battle.setCurrentTurn();
   setTimeout(() => {}, 1000);
-  battle.setSkillCooldownCallback(([fireball,healthPotion])=>{
-    fireball.advanceTurn(); // 쿨다운 감소
-    healthPotion.advanceTurn();
-  })
+  
   // setTimeout(() => {
 
   //   const enemyMsg = battle.enemyAction();
@@ -113,6 +110,10 @@ document
   ?.addEventListener('click', () => playerTurn('item', healthPotion));
 
 ui.renderStats(player, enemy);
+battle.setSkillCooldownCallback(()=>{
+    fireball.advanceTurn(); // 쿨다운 감소
+    healthPotion.advanceTurn();
+  })
 battle.setTurnChangedCallback((turn)=>{
   ui.log('현재'+turn+'님의 턴');
 });

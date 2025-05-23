@@ -6,7 +6,7 @@ export class Character {
     public hp: number,
     public attack: number,
     public defense: number,
-    public speed: number = 3,
+    public speed: number = 10,
     public maxHp: number = hp,
     private maxTurnPoint: number = 30,
     private currentTurnPoint: number = 0,
