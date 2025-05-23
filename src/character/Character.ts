@@ -10,8 +10,8 @@ export class Character {
     public maxHp: number = hp,
     private maxTurnPoint: number = 30,
     private currentTurnPoint: number = 0,
-    
-  ) {}
+
+  ) { }
 
   takeDamage(amount: number): number {
     const damage = Math.max(0, amount - this.defense);
@@ -23,19 +23,22 @@ export class Character {
     return this.hp > 0;
   }
 
-  isTurn(): boolean{
-    if(this.currentTurnPoint >= this.maxTurnPoint) return true;
+  isTurn(): boolean {
+    if (this.currentTurnPoint >= this.maxTurnPoint) return true;
     else return false;
   }
-  increaseTurnPoint(){
+  increaseTurnPoint() {
     this.currentTurnPoint += this.speed;
   }
-  initTurn(){
+  initTurn() {
     this.currentTurnPoint = 0;
   }
   getTurnPoint(): number {
-  return this.currentTurnPoint;
-}
+    return this.currentTurnPoint;
+  }
+  getMaxTurnPoint(): number {
+    return this.maxTurnPoint;
+  }
 
   usePassiveSkill(): string {
     console.log(`[🌀 패시브] ${this.name}의 패시브 스킬 호출됨 (기본: 없음)`);
