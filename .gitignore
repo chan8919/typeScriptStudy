@@ -1,12 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 node_modules/
-dist/
-.parcel-cache/
-=======
-node_modules/
->>>>>>> 68e381c (파이어볼 턴제 도입)
-=======
-node_modules/
-dist/
->>>>>>> daa5a96 (dist 폴더 git 추적 제외 처리)
