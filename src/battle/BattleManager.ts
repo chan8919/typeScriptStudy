@@ -52,7 +52,7 @@ export class BattleManager {
     this.player.initTurn();
     // this.setCurrentTurn();
     //사용한 스킬 쿨다운 카운트 감소 적용
-    if (this.onCooldownChanged) this.onCooldownChanged([]);
+    if (this.onCooldownChanged) this.onCooldownChanged();
     return msg ;
   }
 

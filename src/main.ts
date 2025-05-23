@@ -21,7 +21,11 @@ function checkPassiveSkill() {
   }
 }
 
-function playerTurn(
+function delay(ms:number):Promise<void>{
+  return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+async function playerTurn(
   action: 'attack' | 'heal' | 'skill' | 'item',
   skillOrItem?: any
 ) {
@@ -46,8 +50,8 @@ function playerTurn(
     ui.log('전투 종료');
     return;
   }
-  battle.setCurrentTurn();
-  setTimeout(() => {}, 1000);
+  //battle.setCurrentTurn();
+ setTimeout(() => {}, 1000);
   
   // setTimeout(() => {
 
@@ -63,7 +67,7 @@ function playerTurn(
   //   }
   // }, 1000);
 }
-function gameLoop() {
+async function gameLoop() {
   const turn = battle.getCurrentTurn();
 
   switch (turn) {
@@ -72,6 +76,7 @@ function gameLoop() {
       break;
 
     case 'enemy':
+      await delay(1500);
       ui.disableButtons(true);
       const enemyMsg = battle.enemyAction();
       ui.log(enemyMsg);
